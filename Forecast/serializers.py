@@ -36,5 +36,6 @@ class ForecastSerializer(serializers.Serializer):
         for i in range(7):
             tmax = float("{0:.1f}".format(forecast_tmax[i]))
             tmin = float("{0:.1f}".format(forecast_tmin[i]))
+            date = date + datetime.timedelta(days=1)
             result.append({"DATE": date.strftime("%Y%m%d"), "TMAX": tmax, "TMIN": tmin})
         return result

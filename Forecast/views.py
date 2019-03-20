@@ -3,6 +3,8 @@ from django.conf import settings
 from django.shortcuts import render, reverse
 from django.views.generic import TemplateView
 
+import datetime
+
 from Forecast.forms import ForecastForm
 
 
@@ -25,7 +27,7 @@ class Table(TemplateView):
             tmax = []
             tmin = []
             for entry in json:
-                headers.append(entry['DATE'])
-                tmax.append(entry['TMAX'])
-                tmin.append(entry['TMIN'])
+                headers.append(datetime.datetime.strptime(entry['DATE'], '%Y%m%d').strftime('%B %d, %Y'))
+                tmax.append(str(entry['TMAX']) + ' ℉')
+                tmin.append(str(entry['TMIN']) + ' ℉')
             return render(request, 'Forecast/table.html', {'table_headers': headers, 'tmax': tmax, 'tmin': tmin})
