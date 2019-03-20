@@ -1,20 +1,7 @@
-# CloudComputingHW2
-## Weather Database API
-This API provides access to the maximum and minimum tempratures for every day that is stored in the database and returns in json.
-The availbility is as follows  
-
-Path | Data | Response | Types 
---- | --- | --- | ---
-`<address>/api/historical/` | All dates available in the database | [{"DATE": 20130101},] | GET, POST
-`<address>/api/historical/YYYYMMDD | The max and min temperatures for the date at the end of the request | {"DATE": 20130101, "TMAX": 34.0, "TMIN": 26.0} | GET, DELETE
-`<address>/api/forecast/YYYYMMDD | The forecast for the next 7 days as predicted | [{"DATE": 20130101, "TMAX": 39.8, "TMIN": 22.2},{"DATE": 20130102, "TMAX": 42.7, "TMIN": 22.7},] | GET
-
-Please note that the post request requires a post body of `{"DATE": <Date to set>, "TMAX": <temp to set>, "TMIN": <temp to set>}`
+# CloudComputingHW3
+## Weather Forecast Website
+This site has a form to select the date the user wants to display the forcast for. When the form is submitted, a table appears through ajax that displays the predicted maximum and minimum temperature for the next seven days started at the date input by the user. The website can be found at `<address>/forecast`
 ## Installation using virtualenv and existing database
----
-**NOTE:** This installation is designed for a CentOS system or other system that uses systemctl to manage its services
-
----
 1. Clone this repository to a directory of your choosing
 2. cd into the directory with the code (you know you're in the right directory if you see manage.py in the directory)
 3. Run the following commands to activate the virtual environment  
@@ -29,5 +16,10 @@ Please note that the post request requires a post body of `{"DATE": <Date to set
 4. Load the fixture which has all the original weather information in it `python3 manage.py loaddata Forecast/fixtures.json`
 5. Start the app `sudo python3 manage.py runserver 0.0.0.0:80`
 
+---
+**NOTE:** If you plan to use a port other than port 80, make sure you go into the WeatherDatabase/settings.py and change the URL setting to the port you are using
+
+---
+
 ## How To Use
-Once you have it installed, you can hit your ip locally by going to your local ip and making any http requests as mentioned in the Weather Database API section. To see examples of python code that can hit the api's take a look at validate_hw2.py which can be used to verify that all of the provided apis work. The validate_hw2.py can by run with `python2 validate_hw2.py <address>/api`. If you are running validation from the same machine, the address can just be 127.0.0.1.
+Once you have it installed, you can view the website by navigating to the `<address>/forecast` where address is the address of the machine you installed it on. If you are on the same machine, you can just go to 127.0.0.1/forecast. From here you select your date using the dropdowns and hit submit. The table will then appear underneath the form.
