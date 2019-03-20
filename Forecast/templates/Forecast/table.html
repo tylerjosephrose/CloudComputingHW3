@@ -1,0 +1,26 @@
+<html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Forecast/style.css' %}">
+<body>
+    <table>
+        <tr>
+            <th></th>
+            {% for header in table_headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>TMAX</th>
+            {% for max in tmax %}
+            <td>{{ max }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>TMIN</th>
+            {% for min in tmin %}
+            <td>{{ min }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+</body>
+</html>
