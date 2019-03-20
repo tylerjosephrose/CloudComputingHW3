@@ -107,7 +107,8 @@ class ForecastApi(generics.ListAPIView):
         if not len(date) == 8:
             return
 
-        queryset = Weather.objects.filter(DATE__year=date[:4],
-                                          DATE__month=date[4:6],
+        # Ignore the year because our machine learning tries to generalize the temperature
+        # for a certain day of the month. This means we don't care about the year
+        queryset = Weather.objects.filter(DATE__month=date[4:6],
                                           DATE__day=date[6:8])
         return queryset

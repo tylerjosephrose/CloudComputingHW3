@@ -1,13 +1,10 @@
+import requests
 from django.conf import settings
 from django.shortcuts import render, reverse
 from django.views.generic import TemplateView
+
 from Forecast.forms import ForecastForm
 
-import requests
-
-from django.http import HttpRequest
-
-from Forecast.api.api import ForecastApi
 
 class Forecast(TemplateView):
 
