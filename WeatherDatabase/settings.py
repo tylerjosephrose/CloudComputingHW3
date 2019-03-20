@@ -123,4 +123,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 APPEND_SLASH=False
 
-URL = "http://127.0.0.1:8000"
+URL = "http://127.0.0.1:80"
