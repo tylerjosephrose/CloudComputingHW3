@@ -28,9 +28,7 @@ class HistoricalLookupSerializer(serializers.ModelSerializer):
 
 class ForecastSerializer(serializers.Serializer):
 
-    def to_representation(self, instance):
-        print("Here")
-        date = instance.DATE
+    def to_representation(self, date):
         #date = datetime.datetime.strptime("{}-{}-{}".format(datestr[0][:4], datestr[0][4:6], datestr[0][6:]), "%m-%d-%Y")
         f = Forecasting.get_instance()
         forecast_tmax, forecast_tmin = f.get_forecast(date)
