@@ -35,7 +35,7 @@
         $.ajax({
             url: url + date,
             success: function (data) {
-                $("#my-forecast").html(data)
+                $("#my-forecast").html(data);
                 drawChart()
             },
             failure: function(data) {
@@ -44,41 +44,26 @@
         });
     });
 
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it based on the data in the table returned
-    // from the ajax call
     function drawChart() {
-        console.log("in drawChart");
-        /*var data = google.visualization.arrayToDataTable([
-            ['Date', 'High', 'Low'],
-            [$("#dates-row")[0].children[1].innerText, parseFloat($("#tmax-row")[0].children[1].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[1].innerText.slice(0, -2)), "a"],
-            [$("#dates-row")[0].children[2].innerText, parseFloat($("#tmax-row")[0].children[2].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[2].innerText.slice(0, -2)), "b"],
-            [$("#dates-row")[0].children[3].innerText, parseFloat($("#tmax-row")[0].children[3].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[3].innerText.slice(0, -2)), "b"],
-            [$("#dates-row")[0].children[4].innerText, parseFloat($("#tmax-row")[0].children[4].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[4].innerText.slice(0, -2)), "b"],
-            [$("#dates-row")[0].children[5].innerText, parseFloat($("#tmax-row")[0].children[5].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[5].innerText.slice(0, -2)), "b"],
-            [$("#dates-row")[0].children[6].innerText, parseFloat($("#tmax-row")[0].children[6].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[6].innerText.slice(0, -2)), "b"],
-            [$("#dates-row")[0].children[7].innerText, parseFloat($("#tmax-row")[0].children[7].innerText.slice(0, -2)), parseFloat($("#tmin-row")[0].children[7].innerText.slice(0, -2)), "b"]
-        ]);*/
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Date');
-        data.addColumn('number', 'High');
-                data.addColumn({type:'string', role:'annotation'});
-        data.addColumn('number', 'Low');
-        data.addColumn({type:'string', role:'annotation'});
-        data.addRows([
-            [$("#dates-row")[0].children[1].innerText, parseFloat($("#tmax-row")[0].children[1].innerText.slice(0, -2)), $("#tmax-row")[0].children[1].innerText, parseFloat($("#tmin-row")[0].children[1].innerText.slice(0, -2)), $("#tmin-row")[0].children[1].innerText],
-            [$("#dates-row")[0].children[2].innerText, parseFloat($("#tmax-row")[0].children[2].innerText.slice(0, -2)), $("#tmax-row")[0].children[2].innerText, parseFloat($("#tmin-row")[0].children[2].innerText.slice(0, -2)), $("#tmin-row")[0].children[2].innerText],
-            [$("#dates-row")[0].children[3].innerText, parseFloat($("#tmax-row")[0].children[3].innerText.slice(0, -2)), $("#tmax-row")[0].children[3].innerText, parseFloat($("#tmin-row")[0].children[3].innerText.slice(0, -2)), $("#tmin-row")[0].children[3].innerText],
-            [$("#dates-row")[0].children[4].innerText, parseFloat($("#tmax-row")[0].children[4].innerText.slice(0, -2)), $("#tmax-row")[0].children[4].innerText, parseFloat($("#tmin-row")[0].children[4].innerText.slice(0, -2)), $("#tmin-row")[0].children[4].innerText],
-            [$("#dates-row")[0].children[5].innerText, parseFloat($("#tmax-row")[0].children[5].innerText.slice(0, -2)), $("#tmax-row")[0].children[5].innerText, parseFloat($("#tmin-row")[0].children[5].innerText.slice(0, -2)), $("#tmin-row")[0].children[5].innerText],
-            [$("#dates-row")[0].children[6].innerText, parseFloat($("#tmax-row")[0].children[6].innerText.slice(0, -2)), $("#tmax-row")[0].children[6].innerText, parseFloat($("#tmin-row")[0].children[6].innerText.slice(0, -2)), $("#tmin-row")[0].children[6].innerText],
-            [$("#dates-row")[0].children[7].innerText, parseFloat($("#tmax-row")[0].children[7].innerText.slice(0, -2)), $("#tmax-row")[0].children[7].innerText, parseFloat($("#tmin-row")[0].children[7].innerText.slice(0, -2)), $("#tmin-row")[0].children[7].innerText]
+        var myData = new google.visualization.DataTable();
+        myData.addColumn('string', 'Date');
+        myData.addColumn('number', 'High');
+        myData.addColumn({type:'string', role:'annotation'});
+        myData.addColumn('number', 'Low');
+        myData.addColumn({type:'string', role:'annotation'});
+        myData.addRows([
+            [$("#my-dates-row")[0].children[1].innerText, parseFloat($("#my-tmax-row")[0].children[1].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[1].innerText, parseFloat($("#my-tmin-row")[0].children[1].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[1].innerText],
+            [$("#my-dates-row")[0].children[2].innerText, parseFloat($("#my-tmax-row")[0].children[2].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[2].innerText, parseFloat($("#my-tmin-row")[0].children[2].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[2].innerText],
+            [$("#my-dates-row")[0].children[3].innerText, parseFloat($("#my-tmax-row")[0].children[3].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[3].innerText, parseFloat($("#my-tmin-row")[0].children[3].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[3].innerText],
+            [$("#my-dates-row")[0].children[4].innerText, parseFloat($("#my-tmax-row")[0].children[4].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[4].innerText, parseFloat($("#my-tmin-row")[0].children[4].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[4].innerText],
+            [$("#my-dates-row")[0].children[5].innerText, parseFloat($("#my-tmax-row")[0].children[5].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[5].innerText, parseFloat($("#my-tmin-row")[0].children[5].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[5].innerText],
+            [$("#my-dates-row")[0].children[6].innerText, parseFloat($("#my-tmax-row")[0].children[6].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[6].innerText, parseFloat($("#my-tmin-row")[0].children[6].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[6].innerText],
+            [$("#my-dates-row")[0].children[7].innerText, parseFloat($("#my-tmax-row")[0].children[7].innerText.slice(0, -2)), $("#my-tmax-row")[0].children[7].innerText, parseFloat($("#my-tmin-row")[0].children[7].innerText.slice(0, -2)), $("#my-tmin-row")[0].children[7].innerText]
         ]);
 
-        var options = {
+        var myOptions = {
             title: 'My Forecast',
-            'width': $("#data-table")[0].scrollWidth,
+            'width': $("#my-data-table")[0].scrollWidth,
             'height': 300,
             'backgroundColor': { fill: 'transparent' },
             curveType: 'function',
@@ -89,37 +74,42 @@
             },
         };
 
-        var chart = new google.visualization.LineChart($('#chart_div')[0]);
+        var myChart = new google.visualization.LineChart($('#my_chart_div')[0]);
 
-        chart.draw(data, options);
+        myChart.draw(myData, myOptions);
 
-        /*var data = new google.visualization.DataTable();
-        data.addColumn('string', $("#dates-row")[0].children[1].innerText);
-        data.addColumn('string', $("#dates-row")[0].children[2].innerText);
-        data.addColumn('string', $("#dates-row")[0].children[3].innerText);
-        data.addColumn('string', $("#dates-row")[0].children[4].innerText);
-        data.addColumn('string', $("#dates-row")[0].children[5].innerText);
-        data.addColumn('string', $("#dates-row")[0].children[6].innerText);
-        data.addColumn('string', $("#dates-row")[0].children[7].innerText);
-        data.addRows([
-            [$("#dates-row")[0].children[1].innerText, $("#tmax-row")[0].children[1].innerText, $("#tmin-row")[0].children[1].innerText],
-            [$("#dates-row")[0].children[2].innerText, $("#tmax-row")[0].children[2].innerText, $("#tmin-row")[0].children[2].innerText],
-            [$("#dates-row")[0].children[3].innerText, $("#tmax-row")[0].children[3].innerText, $("#tmin-row")[0].children[3].innerText],
-            [$("#dates-row")[0].children[4].innerText, $("#tmax-row")[0].children[4].innerText, $("#tmin-row")[0].children[4].innerText],
-            [$("#dates-row")[0].children[5].innerText, $("#tmax-row")[0].children[5].innerText, $("#tmin-row")[0].children[5].innerText],
-            [$("#dates-row")[0].children[6].innerText, $("#tmax-row")[0].children[6].innerText, $("#tmin-row")[0].children[6].innerText],
-            [$("#dates-row")[0].children[7].innerText, $("#tmax-row")[0].children[7].innerText, $("#tmin-row")[0].children[7].innerText]
+
+        // Make the OWM chart
+        var myData = new google.visualization.DataTable();
+        myData.addColumn('string', 'Date');
+        myData.addColumn('number', 'High');
+        myData.addColumn({type:'string', role:'annotation'});
+        myData.addColumn('number', 'Low');
+        myData.addColumn({type:'string', role:'annotation'});
+        myData.addRows([
+            [$("#owm-dates-row")[0].children[1].innerText, parseFloat($("#owm-tmax-row")[0].children[1].innerText.slice(0, -2)), $("#owm-tmax-row")[0].children[1].innerText, parseFloat($("#owm-tmin-row")[0].children[1].innerText.slice(0, -2)), $("#owm-tmin-row")[0].children[1].innerText],
+            [$("#owm-dates-row")[0].children[2].innerText, parseFloat($("#owm-tmax-row")[0].children[2].innerText.slice(0, -2)), $("#owm-tmax-row")[0].children[2].innerText, parseFloat($("#owm-tmin-row")[0].children[2].innerText.slice(0, -2)), $("#owm-tmin-row")[0].children[2].innerText],
+            [$("#owm-dates-row")[0].children[3].innerText, parseFloat($("#owm-tmax-row")[0].children[3].innerText.slice(0, -2)), $("#owm-tmax-row")[0].children[3].innerText, parseFloat($("#owm-tmin-row")[0].children[3].innerText.slice(0, -2)), $("#owm-tmin-row")[0].children[3].innerText],
+            [$("#owm-dates-row")[0].children[4].innerText, parseFloat($("#owm-tmax-row")[0].children[4].innerText.slice(0, -2)), $("#owm-tmax-row")[0].children[4].innerText, parseFloat($("#owm-tmin-row")[0].children[4].innerText.slice(0, -2)), $("#owm-tmin-row")[0].children[4].innerText],
+            [$("#owm-dates-row")[0].children[5].innerText, parseFloat($("#owm-tmax-row")[0].children[5].innerText.slice(0, -2)), $("#owm-tmax-row")[0].children[5].innerText, parseFloat($("#owm-tmin-row")[0].children[5].innerText.slice(0, -2)), $("#owm-tmin-row")[0].children[5].innerText],
         ]);
 
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-            'width':400,
-            'height':300};
+        var myOptions = {
+            title: 'OpenWeatherMap Forecast',
+            'width': $("#owm-data-table")[0].scrollWidth,
+            'height': 300,
+            'backgroundColor': { fill: 'transparent' },
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            series: {
+                0: { color: '#e21914'  },
+                1:  { color: '#1a24e7'  }
+            },
+        };
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        console.log("drawing chart");
-        chart.draw(data, options);*/
+        var myChart = new google.visualization.LineChart($('#owm_chart_div')[0]);
+
+        myChart.draw(myData, myOptions);
     }
 
 </script>
