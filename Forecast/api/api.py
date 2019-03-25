@@ -89,7 +89,7 @@ class ForecastApi(generics.ListAPIView):
     """
     Provides the Forecast for the given next 7 days starting on date in YYYYMMDD
     """
-    queryset = Weather.objects.all()
+    #queryset = Weather.objects.all()
     serializer_class = ForecastSerializer
 
     def list(self, request, *args, **kwargs):
@@ -107,7 +107,7 @@ class ForecastApi(generics.ListAPIView):
         if not len(date) == 8:
             return
 
-        # Ignore the year because our machine learning tries to generalize the temperature
-        # for a certain day of the month. This means we don't care about the year
-        queryset = [datetime.datetime.strptime(date, '%Y%m%d')]
-        return queryset
+        #queryset = Weather.objects.filter(DATE__year=date[0:4],
+        #                                  DATE__month=date[4:6],
+        #                                  DATE__day=date[6:8])
+        return [datetime.datetime.strptime(date, "%Y%m%d")]

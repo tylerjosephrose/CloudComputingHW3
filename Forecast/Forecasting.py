@@ -3,6 +3,7 @@ import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor
+from Forecast.models import Weather
 
 
 def read_data():
@@ -42,16 +43,28 @@ class Forecasting:
             Forecasting.__instance = self
 
     def get_forecast(self, date):
-        dates = [[date.month, date.day]]
-        for i in range(6):
+        dates = []
+        forecast_tmax = {}
+        forecast_tmin = {}
+        for i in range(7):
+            # if date is in the database then retreive it and don't predict
+            data = Weather.objects.filter(DATE__year=date.year, DATE__day=date.day, DATE__month=date.month)
+            if data.count() == 1:
+                forecast_tmax[date] = data.first().TMAX
+                forecast_tmin[date] = data.first().TMIN
+            else:
+                dates.append([date.month, date.day])
             date += datetime.timedelta(days=1)
-            dates.append([date.month, date.day])
-
-        print(dates)
 
         # turn datetimes into what we need to put in
-        forecast_tmax = self.regr_max.predict(dates)
-        forecast_tmin = self.regr_min.predict(dates)
+        if len(dates) > 0:
+            tmax_predictions = self.regr_max.predict(dates)
+            tmin_predictions = self.regr_min.predict(dates)
+
+        for i in range(len(dates)):
+            date = datetime.datetime.strptime("{}{}{}".format(dates[i][0], dates[i][1], date.year), "%m%d%Y")
+            forecast_tmax[date] = tmax_predictions[i]
+            forecast_tmin[date] = tmin_predictions[i]
 
         return forecast_tmax, forecast_tmin
 
