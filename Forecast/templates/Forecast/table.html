@@ -2,25 +2,26 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'Forecast/style.css' %}">
 <body>
-    <table>
-        <tr>
-            <th></th>
-            {% for header in table_headers %}
+<table id="data-table">
+    <tr id="dates-row">
+        <th></th>
+        {% for header in table_headers %}
             <th>{{ header }}</th>
-            {% endfor %}
-        </tr>
-        <tr>
-            <th>High</th>
-            {% for max in tmax %}
+        {% endfor %}
+    </tr>
+    <tr id="tmax-row">
+        <th>High</th>
+        {% for max in tmax %}
             <td>{{ max }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <th>Low</th>
-            {% for min in tmin %}
+        {% endfor %}
+    </tr>
+    <tr id="tmin-row">
+        <th>Low</th>
+        {% for min in tmin %}
             <td>{{ min }}</td>
-            {% endfor %}
-        </tr>
-    </table>
+        {% endfor %}
+    </tr>
+</table>
+<div id="chart_div"></div>
 </body>
 </html>
