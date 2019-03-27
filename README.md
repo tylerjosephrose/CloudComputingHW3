@@ -1,6 +1,6 @@
 # CloudComputingHW3
 ## Weather Forecast Website
-This site has a form to select the date the user wants to display the forcast for. When the form is submitted, a table appears through ajax that displays the predicted maximum and minimum temperature for the next seven days started at the date input by the user. The website can be found at `<address>/forecast`
+This site has a form to select the date the user wants to display the forcast for. When the form is submitted, a table and chart appears through ajax that displays the predicted maximum and minimum temperature for the next seven days started at the date input by the user. The website can be found at `<address>/forecast`. If the date inputed is the current date, the prediction for the next 5 days will appear as well.
 ## Installation using virtualenv and existing database
 1. Clone this repository to a directory of your choosing
 2. cd into the directory with the code (you know you're in the right directory if you see manage.py in the directory)
@@ -22,4 +22,4 @@ This site has a form to select the date the user wants to display the forcast fo
 ---
 
 ## How To Use
-Once you have it installed, you can view the website by navigating to the `<address>/forecast` where address is the address of the machine you installed it on. If you are on the same machine, you can just go to 127.0.0.1/forecast. From here you select your date using the dropdowns and hit submit. The table will then appear underneath the form.
+Once you have it installed, you can view the website by navigating to the `<address>/forecast` where address is the address of the machine you installed it on. If you are on the same machine, you can just go to 127.0.0.1/forecast. From here you select your date using the dropdowns and hit submit. The table and chart will then appear underneath the form.
